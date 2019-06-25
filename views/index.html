@@ -1,0 +1,162 @@
+{{extend './layout_template/layout_tpl_new.html'}}
+<!-- 继承带有搜索框的模板布局页面 -->
+{{block 'title'}}百草书屋{{/block}}
+{{block 'head'}}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 首页样式 -->
+<link rel="stylesheet" type="text/css" href="../public/css/index/index.css" />
+<link rel="stylesheet" href="../public/css/book/booklist.css">
+<!-- 焦点图风格 -->
+<link href="../public/vender/myfocus/js/mf-pattern/mF_fancy.css" rel="stylesheet" />
+<link href="../public/vender/myfocus/js/mf-pattern/mF_YSlider.css" rel="stylesheet" type="text/css" />
+{{/block}}
+
+<!-- 首页内容部分 -->
+{{block 'body'}}
+<!-- 首页内容部分 -->
+<div class="index-content">
+	<!-- 首页轮播图部分 -->
+	<div class="index-content-wrap">
+		<div class="nav-container">
+			<!-- 两栏自适应 -->
+			<div class="nav-left">
+				<ul>
+					<!-- 左边的分类名称 -->
+					<li><a href="#">书籍分类</a></li>
+					{{if category!=null&&category!=''}}
+					{{each category}}
+					<li><a href="/booklist/categoryflag/{{$value.flag}}">{{$value.categoryname}}</a></li>
+					{{/each}}
+					{{else if  category==null||category==''}}
+						<h3>服务器错误</h3>
+						{{/if}}
+				</ul>
+			</div>
+			<div class="nav-right">
+				<!-- 右边的分类标识 -->
+				<div class="nav-right-top clearfix">
+					<ul>
+						{{if category!=null&&category!=''}}
+						{{each category}}
+						<li><a href="/booklist/categoryflag/{{$value.flag}}">{{$value.flag}}</a></li>
+						{{/each}}
+						{{else if  category==null||category==''}}
+							<h3>服务器错误</h3>
+							{{/if}}
+					</ul>
+				</div>
+				<div class="nav-right-middle">
+					<div class="nav">
+						<div class="ad" id="picBox">
+							<div class="loading"><img src="/public/img/loading.gif" height="95" width="156" /></div>
+							<div class="pic">
+								<ul>
+									<li><a href="/bookdetail/id/81"><img src="http://localhost:3000/public/img/book/1.jpg" height="306" width="800" /></a></li>
+									<li><a href="/bookdetail/id/1830"><img src="http://localhost:3000/public/img/book/2.jpg" height="306" width="800" /></a></li>
+									<li><a href="/bookdetail/id/2824"><img src="http://localhost:3000/public/img/book/3.jpg" height="306" width="800" /></a></li>
+									<li><a href="/bookdetail/id/362"><img src="http://localhost:3000/public/img/book/4.jpg" height="306" width="800" /></a></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="nav-right-bottom">
+					<div class="nav-bottom-left re" id="box">
+						<div class="screen"><!-- 相框 -->
+							<ul>
+								<li><a href="/bookdetail/id/1290"><img src="http://localhost:3000/public/img/book/游大海.jpg" width="400" height="200" alt=""></a></li>
+								<li><a href="/bookdetail/id/1027"><img src="http://localhost:3000/public/img/book/种棵小树陪着你.jpg" width="400" height="200" alt=""></a></li>
+								<li><a href="/bookdetail/id/2"><img src="http://localhost:3000/public/img/book/月光下的大提琴.jpg" width="400" height="200" alt=""></a></li>
+								<li><a href="/bookdetail/id/3630"><img src="http://localhost:3000/public/img/book/自传.jpg" width="400" height="200" alt=""></a></li>
+							</ul>
+							<ul class="dot"></ul><!-- 点 -->
+						</div>
+						<div  id="arr"><span id="left">&lt;</span><span id="right">&gt;</span></div>
+					</div>
+					<div class="nav-bottom-right">
+						<ul id="booklist" class="nav-right-booklist">
+							{{if booklist!=null&&booklist!=''}}
+							{{each booklist}}
+
+							<li>
+								<a href="/bookdetail/id/{{$value.id}}">
+									<img src="{{$value.imageurl}}" alt="书籍图片">
+									<h5>{{$value.bookname}}</h5>
+									<div class="p">{{$value.author}}</div>
+									<div class="pmore clearfix">
+										<div class="publisher">{{$value.publisher}}</div>
+										<div class="more">more&gt;&gt;</div>
+									</div>
+								</a>
+							</li>
+							{{/each}}
+							{{else if  booklist==null||booklist==''}}
+								<h3>没有书籍信息</h3>
+								{{/if}}
+						</ul>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- 首页图书列表部分 -->
+	<div class="booklist-content-wrap">
+		<div class="public-container booklist-container clearfix">
+			<!-- 标题区域 -->
+			<div class="booklist-title-container clearfix">
+				<a href="">
+					<h3 class="fl">书籍专区</h3>
+				</a>&nbsp;&nbsp;&nbsp;<span class="title">更多好书在这里</span>
+				<div class="fr more"><a href="/booklist?num=8" class="moretitle">更多&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="../public/icon/rightarrow.png"
+						 alt=""></a></div>
+			</div>
+			<!--书籍模板 -->
+			<div class="booklist-content-container">
+				{{if books!=null&&books!=''}}
+				{{each books}}
+				<div class="booklist">
+					<a href="/bookdetail/id/{{$value.id}}">
+						<img class="bookimg" src="{{$value.imageurl}}" alt="书籍图片">
+						<div><span class="ds fl">商城价:{{$value.price}}</span><span class="ds fr">{{$value.purchase_count}}人付款</span></div>
+						<p>{{$value.bookname}}</p>
+						<p><span class="ps fl">{{$value.book_language}}</span><span class="fr ps">{{$value.keywords}}</span></p>
+						<p><span class="fl ps">{{$value.publisher}}</span><span class="fr ps">{{$value.publisher_area}}</span></p>
+					</a>
+				</div>
+				{{/each}}
+				{{else if  books==null||books==''}}
+					<h3>没有书籍信息</h3>
+					{{/if}}
+			</div>
+		</div>
+	</div>
+</div>
+{{/block}}
+
+{{block 'script'}}
+
+<!--焦点图myfocus的设置-->
+<script src="../public/vender/myfocus/js/setHomeSetFav.js" type="text/javascript" charset="GB2312"></script>
+<script src="../public/vender/myfocus/js/myfocus-2.0.1.min.js" type="text/javascript"></script>
+<script src="../public/vender/myfocus/js/mf-pattern/mF_fancy.js" type="text/javascript"></script>
+<script src="../public/vender/myfocus/js/mf-pattern/mF_YSlider.js" type="text/javascript"></script>
+
+<!-- 焦点图配置 -->
+<script type="text/javascript">
+	myFocus.set({
+		id: 'picBox', //焦点图盒子ID
+		pattern: 'mF_fancy', //风格应用的名称
+		time: 3, //切换时间间隔(秒)
+		trigger: 'click', //触发切换模式:'click'(点击)/'mouseover'(悬停)
+		width: 800, //设置图片区域宽度(像素)
+		height: 306, //设置图片区域高度(像素)
+		txtHeight: 'default' //文字层高度设置(像素),'default'为默认高度，0为隐藏
+	})
+</script>
+<!--首页基本js  -->
+<script src="../public/js/index/iscroll.js"></script>
+<script src="../public/js/index/index.js"></script>
+{{/block}}

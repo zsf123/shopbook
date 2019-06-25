@@ -1,0 +1,132 @@
+{{extend './layout_template/layout_tpl.html'}}
+<!-- 继承模板布局页面 -->
+{{block 'title'}}注册页面{{/block}}
+{{block 'head'}}
+<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+ crossorigin="anonymous">
+<style>
+	.p{
+            color:red;
+            margin-left:20px;
+            display:inline-block;
+        }
+        .c{
+            color:red;
+            margin-left:4px;
+            display:inline-block;
+        }
+        .l{
+            font-size:18px;
+        }
+        .d{
+            height:35px;
+            width:300px;
+            display:inline;
+        }
+        .i{
+            height:30px;
+            width:300px;
+        }
+		.leftli{
+			color:#fff;
+			font-size:14px;
+			font-weight: bold;
+			letter-spacing:4px;
+			margin-left:50px;
+		}
+		.rightdiv{
+			position:absolute;
+			top:0;
+			right:0;
+			line-height: 50px;
+		}
+		.rightli{
+			color:#fff;
+			font-size:14px;
+			letter-spacing:4px;
+			margin-left:50px;
+			display: inline-block;
+		}
+		.righta{
+			color:red;
+			letter-spacing: 4px;
+			font-size:14px;
+			font-weight: bold;
+		}
+		.input-group{
+			width:350px;
+		}
+		input[type='submit']{
+			margin:0 auto;
+			height:40px;
+			width:300px;
+			background-color:#000;
+			color:#fff;
+			display:inline-block;
+			border-radius:10px;
+		}
+		.form-check{
+			float:left;
+			margin-left:30px;
+			margin-top:10px;
+		}
+    </style>
+{{/block}}
+
+</head>
+{{block 'body'}}
+<div style="margin:50px auto; width:300px;">
+	<form  action="/register" method="post">
+		<div style="width:500px;float:left;margin:0 20px;">
+			<div style="font-size:28px;">注册新用户</div>
+			<br>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-default">账&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;号</span>
+				</div>
+				<input type="text" name="username" id="username" class="form-control" aria-label="Default" value="" placeholder='请输入用户名' inputGroup-sizing-default  autofocus="autofocus"/>
+			</div>
+			<div class="input-group mb-3" style="clear:both;">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-default">密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码</span>
+				</div>
+				<input type="password" name="password" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-default">确认密码</span>
+				</div>
+				<input type="password" name="repassword" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-2">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-default">手&nbsp;&nbsp;机&nbsp;号</span>
+				</div>
+				<input type="text" name="telephone" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">
+			</div>
+			<div class="input-group mb-3">
+				<div class="input-group-prepend">
+					<span class="input-group-text" id="inputGroup-sizing-default">性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别</span>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" type="radio" name="sex" value="男" id="defaultCheck1">
+					<label class="form-check-label" for="defaultCheck1">
+						男
+					</label>
+				</div>
+				<div class="form-check">
+					<input class="form-check-input" name="sex" type="radio" value="女" id="defaultCheck2">
+					<label class="form-check-label" for="defaultCheck2">
+						女
+					</label>
+				</div>
+			</div>
+
+			<input type="submit" value="注册" />
+		</div>
+	</form>
+</div>
+{{/block}}
+{{block 'script'}}
+<script src="../public/js/register/register.js"></script>
+{{/block}}

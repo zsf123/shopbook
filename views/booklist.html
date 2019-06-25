@@ -1,0 +1,43 @@
+{{extend './layout_template/layout_tpl.html'}}
+<!-- 继承带有搜索框的模板布局页面 -->
+{{block 'title'}}书籍列表{{/block}}
+{{block 'head'}}
+<link rel="stylesheet" href="/public/css/book/booklist.css">
+{{/block}}
+{{block 'body'}}
+<div class="books-content">
+	<!-- 首页轮播图部分 -->
+	<div class="books-content-wrap">
+		<div class="booklist-content-wrap">
+			<div class="booklist-container clearfix">
+				<!-- 标题区域 -->
+				<div class="booklist-title-container clearfix">
+						<h3 style="font-size:18px;" class="fl">您可能需要的书籍</h3>&nbsp;&nbsp;&nbsp;<span class="title">这里总共有{{books.length}}本</span>
+				</div>
+				<!--书籍模板 -->
+				<div class="booklist-content-container"  id="booklist">
+					{{if books!=null&&books!=''}}
+					{{each books}}
+					<div class="booklist" >
+						<a href="/bookdetail/id/{{$value.id}}">
+							<img class="bookimg" src="{{$value.imageurl}}" alt="书籍图片">
+							<div><span class="ds fl">商城价:{{$value.price}}</span><span class="ds fr">{{$value.purchase_count}}人付款</span></div>
+							<p>{{$value.bookname}}</p>
+							<p><span class="ps fl">{{$value.book_language}}</span><span class="fr ps">{{$value.keywords}}</span></p>
+							<p><span class="fl ps">{{$value.publisher}}</span><span class="fr ps">{{$value.publisher_area}}</span></p>
+						</a>
+					</div>
+					{{/each}}
+					{{else if  books==null||books==''}}
+						<h3>没有书籍信息</h3>
+						{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{{/block}}
+{{block 'script'}}
+<script src="/node_modules/_jquery@3.4.0@jquery/dist/jquery.min.js"></script>
+<script src="/public/js/booklist/booklist.js"></script>
+{{/block}}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<!--页面基本布局  -->
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>{{block 'title'}}默认不带搜索框布局{{/block}}</title>
+		<link rel="icon" href="/public/icon/favicon.ico">
+		<link rel="stylesheet" href="/public/font/iconfont.css" />
+		<link rel="stylesheet" href="/public/css/vender/font-awesome-4.7.0/css/font-awesome.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/common/common.css" />
+		<link rel="stylesheet" type="text/css" href="/public/css/common/header/header.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/common/sidebar/sidebar.css"/>
+		<link rel="stylesheet" type="text/css" href="/public/css/common/footer/footer.css"/>
+		{{block 'head'}}{{/block}}
+	</head>
+	<body>
+		<div class="index-container">
+			{{include '../common/header.html'}}
+			{{block 'body'}}{{/block}}
+			{{include '../common/sidebar.html'}}
+			{{include '../common/footer.html'}}
+		</div>
+		<script src="/public/js/vender/jquery.min.js"></script>
+		<script type="text/javascript" src="/public/js/common/header/header.js"></script>
+		<script type="text/javascript" src="/public/js/common/sidebar/sidebar.js"></script>
+		{{block 'script'}}{{/block}}
+	</body>
+</html>

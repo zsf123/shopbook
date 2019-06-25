@@ -1,0 +1,103 @@
+{{extend './layout_template/layout_tpl_new.html'}}
+<!-- 继承模板布局页面 -->
+{{block 'title'}}购物车页面{{/block}}
+{{block 'head'}}
+<link rel="stylesheet" type="text/css" href="/public/css/shop/shopcar.css" />
+{{/block}}
+{{block 'body'}}
+<!-- 底部固定结算页面 -->
+<div class="index-content">
+	<div class="index-content-wrap">
+		<ul class="shop-info-wrap">
+			<li class="clearfix">
+				<h3>全部商品<input type="text" vlaue="34"></h3>
+				<div>已选商品（不含运费）<span style="color:red">¥ <input type="text" style="color:red;background-color: transparent;width:40px;"
+						 id="totalprice1" value="0.00"></span> <input type="button" name="account" value="结算"></div>
+			</li>
+			<li class="shop-info-title">
+				<ul class="shop-title-top clearfix">
+					<li><input type="checkbox" class="checkbox" name="allcheckbox">&nbsp;&nbsp;全选</li>
+					<li>商品信息</li>
+					<li>单价</li>
+					<li>数量</li>
+					<li>金额</li>
+					<li>操作</li>
+				</ul>
+			</li>
+			{{if shopcar}}
+			{{each shopcar  value index}}
+			<li class="re">
+				<div class="publiser re"><input type="checkbox" name="itemcheckbox" index="{{index}}" totalcount="{{value.count}}" /><img
+					 src="/public/icon/shop.png" alt=""><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{value.publisher}}</span></div>
+				<div class="shop-info">
+					<div class="shop-bill clearfix">
+						<ul class="fl clearfix">
+							<!-- 为了找到当前购物项id -->
+							<li style="display:none"><input type="hidden" id="itemid" index="{{index}}" value="{{value.shoppingcartid}}" /></li>
+							<li><input type="checkbox" class="fl" name="itemcheckbox" index="{{index}}" totalcount="{{value.count}}"
+								 shoppingcartid="{{value.shoppingcartid}}"><a href="/bookdetail/id/{{value.productid}}"><img src="{{value.imageurl}}"
+									 alt="图书"></a></li>
+							<li><a href="/bookdetail/id/{{value.productid}}">{{value.productname}}</a></li>
+							<li><input type="text" class="itemprice" value="{{value.itemprice}}"></li>
+							<li>
+								<!-- itemprice为了减少到1时设置小计 -->
+								<input type="button" class="fl" name="delnum" index="{{index}}" itemprice="{{value.itemprice}}" value="{{value.count==1?'':'-'}}"
+								 shoppingcartid="{{value.shoppingcartid}}" />
+								<input type="text" class="count fl" name="getnum" index="{{index}}" value="{{value.count}}">
+								<!-- shoppingcartid持久化时需要的参数 index找到匹配的数量对象时需要 -->
+								<input type="button" class="fl" name="addnum" index="{{index}}" itemprice="{{value.itemprice}}" shoppingcartid="{{value.shoppingcartid}}"
+								 value="+" />
+							</li>
+							<!-- 小计 这里的value值是在后台重新封装的-->
+							<li><span style="color:red">¥ <input type="text" class="totalprice" index="{{index}}" name="subtotal" value="{{value.totalprice}}"></span></li>
+							<li class="re"><a href="#">移入收藏夹</a>
+								<!-- <a href="/shopcar/del/id/{{value.shoppingcartid}}">删除</a> -->
+								<button name="delitem" class="delitem" index="{{index}}" shoppingcartid="{{value.shoppingcartid}}">删除</button>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</li>
+			{{/each}}
+			{{else}}
+				<li>
+					<h3>购物车没有书籍，<a href="/">赶快去添加吧</a></h3>
+				</li>
+				{{/if}}
+		</ul>
+
+		<div class="account re" style="z-index:2000000;">
+			<ul>
+				<li><input type="checkbox" name="allcheckbox">全选</li>
+				<li class="re"><input type="button" id="delall" value="删除"></li>
+				<li><a class="collection">移入收藏夹</a></li>
+				<li>已选商品<span><input type="text" id="totalcount" style="color:red;font-size:16px;font-weight: bold;" value="0"></span>件&nbsp;&nbsp;合计（不含运费）：<span>¥<input
+						 type="text" id="totalprice2" style="color:red;font-size:20px;font-weight: bold;width:100px;" value="0"></span></li>
+			</ul>
+			<input type="button" name="account" value="结算">
+		</div>
+	</div>
+</div>
+<!-- 遮罩层 -->
+<div ip="app">
+	<div id="mask1" v-if="show" style="display:none;width: 100%;height: 100%;background: rgba(0, 0, 0, 0.4);z-index:22000000;position: position;left:0px; "></div>
+	<!-- 模态框 -->
+	<div id="modal" class="modal"><a id="cross"><img class="cross" src="/public/icon/cha.png" alt="叉号"></a>
+		<div id="displaytext">
+			<!-- 模态框显示内容 -->
+		</div>
+	</div>
+</div>
+
+{{/block}}
+{{block 'script'}}
+<script src="/node_modules/_jquery@3.4.0@jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/public/js/shopcar/shopcar.js"></script>
+<script type="text/javascript" src="/public/js/vender/vue.min.js"></script>
+new Vue({
+el:'#app',
+data:{
+show:false
+}
+})
+{{/block}}

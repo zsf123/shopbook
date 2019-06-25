@@ -1,0 +1,158 @@
+<!-- 修改时间显示前面加秒0 -->
+<!-- 每个网页公共的头:脱离文档流 -->
+<div class="top-container">
+	<!-- 居中容器 -->
+	<div class="public-container re clearfix">
+		<!--向左容器-->
+		<div class="fl re">
+			<span class="public-time">今天是：<script language="javascript" src="/public/js/index/date.js"></script>
+			</span>
+			<span class="login-link-container">
+				<ul id="header-left" class="clearfix ">
+					{{if User!=null&&User!=''}}
+					<li>
+						<div><a href="#" class="welcome" style="color:red;">欢迎您,{{User.nickname}}&nbsp;&nbsp;</a></div>
+					</li>
+					<li>
+						<div><a href="/logout">退出登录</a></div>
+					</li>
+					{{else if User==null||User==''}}
+						<li>
+							<div><a href="/login">亲，请登录</a></div>
+							<div class="loginout">您还没有登录，请先去<a href="/login" class="loginlink" style="display:inline;color:#f00;">登录</a>吧</div>
+						</li>
+						<li>
+							<div><a href="/register">免费注册</a></div>
+						</li>
+						{{/if}}
+
+				</ul>
+			</span>
+		</div>
+		<!--向右容器-->
+		<div class="fr" id="header-right">
+			<ul class="clearfix" class="header-right-wrap">
+				<li>
+					<div>
+						<a href="/" class="index">回到首页</a>
+					</div>
+				</li>
+
+
+				<li class="web-navigate" id="geta">
+					<div class="web-navigate-hd">
+						<a href="#">网站导航<span class="fontsize iconfont">&#xe600;</span></a>
+					</div>
+					<div class="web-navigate-bd">
+
+						<div class="web-navigate-bd-wrap">
+
+							<div class="web-navigate-item">
+								<div class="web-navigate-item-wrap">
+									<div class="item-hd">
+										<h3 style="color:forestgreen">成人读物区</h3>
+									</div>
+									<div class="item-bd">
+										<ul class="clearfix">
+											{{if webnavigate&&webnavigate.youthNavigate!=null&&webnavigate.youthNavigate!=''}}
+											{{each webnavigate.youthNavigate}}
+											<li><a href="/booklist/areaname/成人读物区/categoryname/{{$value.categoryname}}" class="re">{{$value.categoryname}}</a></li>
+											{{/each}}
+											{{else}}
+												<h4>服务器错误</h4>
+												{{/if}}
+										</ul>
+									</div>
+								</div>
+							</div>
+
+
+							<div class="web-navigate-item">
+								<div class="web-navigate-item-wrap">
+									<div class="item-hd">
+										<h3 style="color:palevioletred">少儿读本区</h3>
+									</div>
+									<div class="item-bd">
+										<ul class="clearfix">
+											{{if webnavigate&&webnavigate.childrenNavigate!=null&&webnavigate.childrenNavigate!=''}}
+											{{each webnavigate.childrenNavigate}}
+											<li><a href="/booklist/areaname/少儿读本区/categoryname/{{$value.categoryname}}" class="re">{{$value.categoryname}}</a>
+
+											</li>
+											{{/each}}
+											{{else}}
+												<h4>服务器错误</h4>
+												{{/if}}
+										</ul>
+									</div>
+								</div>
+							</div>
+
+							<div class="web-navigate-item">
+								<div class="web-navigate-item-wrap border-right-style">
+									<div class="item-hd">
+										<h3 style="color:#005CBF;">低幼绘本区</h3>
+									</div>
+									<div class="item-bd">
+										<ul class="clearfix">
+											{{if webnavigate!=null&&webnavigate!=''&&webnavigate.babyNavigate!=null&&webnavigate.babyNavigate!=''}}
+											{{each webnavigate.babyNavigate}}
+											<li><a href="/booklist/areaname/低幼绘本区/categoryname/{{$value.categoryname}}" class="re">{{$value.categoryname}}</a></li>
+											{{/each}}
+											{{else}}
+												<h4>服务器错误</h4>
+												{{/if}}
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</li>
+				<li>
+					<div>
+						<a href="#" class="order">我的订单<span class="fontsize iconfont">&#xe600;</span></a>
+					</div>
+					<div class="re">
+						<div class="myorder-wrap">
+							<a href="#">已经购买的宝贝</a>
+							<a href="#">我的足迹</a>
+						</div>
+					</div>
+				</li>
+
+					{{if User!=null&&User!=''}}
+				<li id="shop" class="shop">
+					<div> 
+						<a class="re" href="/shopcar"><img class="shopcar" id="shopcar" src="/public/icon/shopcar.png" width="25px"
+							 height="25px" alt="购物车图片">&nbsp;&nbsp;购物车
+							<input type="button" class="circleend" id="end" value="0">
+						</a>
+					</div>
+					</li>
+					{{else if User==null || User==''}}
+					<li id="shop" class="shop1">
+					<div> 
+						<a class="re" href="/login"><img class="shopcar" id="shopcar" src="/public/icon/shopcar.png" width="25px"
+							 height="25px" alt="购物车图片">&nbsp;&nbsp;购物车
+						</a>
+					</div>
+					<div class="shop2">您的购物车没有书籍，赶快<a href="/booklist?num=8">去添加</a>吧</div>
+				</li>
+					{{/if}}
+
+
+				<li class="navmenu">
+					<div><a href="#">收藏夹<span class="fontsize iconfont">&#xe600;</span></a></div>
+					<div class="re">
+						<div class="collection-wrap">
+							<a href="#">收藏的书籍</a>
+							<a href="#">收藏的分类</a>
+						</div>
+					</div>
+				</li>
+
+			</ul>
+		</div>
+	</div>
+</div>

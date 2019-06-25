@@ -1,0 +1,58 @@
+{{extend './layout_template/layout_tpl.html'}}
+
+{{block 'title'}}书籍详情{{/block}}
+{{block 'head'}}
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" type="text/css" href="/public/css/index/index.css" />
+<link rel="stylesheet" href="/public/css/book/bookdetail.css">
+<!--下拉选项图标使用阿里图标字体-->
+{{/block}}
+{{block 'body'}}
+<div class="public-container">
+	{{if book!=null&&book!=''}}
+	<div class="bookdetail-container">
+		<div class="bookdetail-img" id="bookdetail-img">
+			<div class="small">
+				<img src="{{book.imageurl}}" alt="" class="smallimg">
+				<div class="mask"></div>
+			</div>
+			<div class="big">
+				<img src="{{book.imageurl}}" alt="" class="bigimg">
+			</div>
+		</div>
+		<div class="bookdetail-content">
+			<input id="book" type="hidden" value="{{book}}">
+			<div>{{book.bookname}}</div>
+			<div>{{book.author}}</div>
+			<div class="price-title">价格&nbsp;&nbsp;&nbsp;&nbsp;<span class="price">{{book.price}}</span></div>
+			<div>{{book.bookname}}</div>
+			<div>{{book.publisher}}</div>
+			<div class="num">数量&nbsp;&nbsp;&nbsp;&nbsp;<input class="num-text" id="num" type="text" value="1" />
+				<div class="pullimg">
+					<img id="pullup" src="/public/icon/pulldown.png" alt="上拉图标" />
+					<img id="pulldown" src="/public/icon/pulldown.png" alt="下拉图标" />
+				</div>
+			</div>
+			<div class="purchase">
+				<button type="button">立即购买</button>
+				<button type="button" id="addcart" class="re">
+					<img src="/public/icon/shopcar.png" alt="购物车图片">加入购物车
+				</button>
+			</div>
+		</div>
+	</div>
+	{{/if}}
+</div>
+<div id="mask" class="mask"></div> <!-- 遮罩层 -->
+<div id="modal" class="modal re"><a href="" id="cross"><img class="cross" src="/public/icon/cha.png" alt=""></a>您还没有登录，请先<a
+	 href="/login" class="gotologin">去登录</a></div>
+{{/block}}
+{{block 'script'}}
+<script src="/node_modules/_jquery@3.4.0@jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="/public/js/vender/jquery.fly.min.js"></script>
+<script src="/public/js/index/index.js"></script>
+<script src="/public/js/bookdetail/bookdetail.js"></script>
+{{/block}}
+

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>模态框弹出层.html</title>
+    
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <style>
+		
+/* 首页顶部导航栏右侧 */
+.fr ul>li{
+	float:right;
+	width:100px;
+	height:50px;
+	line-height: 50px;
+	border:1px solid #fff;
+	z-index: 200001;
+	/* overflow: hidden; */
+}
+
+.fr ul li div a{
+	display:block;
+	color:#fff;
+	text-align: center;
+}
+
+.fr ul li>div{
+	position:relative;
+	z-index:200002;
+	border:1px solid red;
+}
+
+.fr ul li>div:nth-child(2){
+	background-color: #fff;
+}
+.web-navigate .web-navigate-bd{
+	position:relative;
+}
+
+.web-navigate .web-navigate-bd .web-navigate-bd-wrap{
+	position:absolute;
+	right:0;
+	left:auto;
+	background-color: #fff;
+	}
+	
+.web-navigate .web-navigate-bd .web-navigate-bd-wrap .web-navigate-item{
+	position:relative;
+	float:right;
+	width:300px;
+	height:300px;
+	border-right: 1px solid #f4f4f4;
+}	
+
+.web-navigate .web-navigate-bd .web-navigate-bd-wrap .web-navigate-item .item-bd ul li{
+	float:left;
+	margin-right:15px;
+}
+.web-navigate .web-navigate-bd .web-navigate-bd-wrap .web-navigate-item .item-bd ul li a{
+	color:#000;
+}
+
+
+
+
+
+    </style>
+  </head>
+  
+  <body>
+     <ul>
+     	<li class="web-navigate">
+     		<div class="web-navigate-hd">
+     			<a href="#">网站导航<span class="fontsize iconfont">&#xe600;</span></a>
+     		</div>
+     		<div class="web-navigate-bd">
+     	
+     			<div class="web-navigate-bd-wrap">
+     	
+     				<div class="web-navigate-item">
+     					<div class="web-navigate-item-wrap">
+     						<div class="item-hd">
+     							<h3>成人读物区</h3>
+     						</div>
+     						<div class="item-bd">
+     							<ul>
+     								{{if webnavigate.youthNavigate}}
+     								{{each webnavigate.youthNavigate}}
+     								<li><a href="">{{$value.categoryname}}</a></li>
+     								{{/each}}
+     								{{else}}
+     									<h3>服务器错误</h3>
+     									{{/if}}
+     							</ul>
+     						</div>
+     					</div>
+     				</div>
+     	
+     	
+     				<div class="web-navigate-item">
+     					<div class="web-navigate-item-wrap">
+     						<div class="item-hd">
+     							<h3>少儿读本区</h3>
+     						</div>
+     						<div class="item-bd">
+     							<ul>
+     								{{if webnavigate.childrenNavigate}}
+     								{{each webnavigate.childrenNavigate}}
+     								<li><a href="">{{$value.categoryname}}</a></li>
+     								{{/each}}
+     								{{else}}
+     									<h3>服务器错误</h3>
+     									{{/if}}
+     							</ul>
+     						</div>
+     					</div>
+     				</div>
+     	
+     				<div class="web-navigate-item">
+     					<div class="web-navigate-item-wrap">
+     						<div class="item-hd">
+     							<h3>低幼绘本区</h3>
+     						</div>
+     						<div class="item-bd">
+     							<ul>
+     								{{if webnavigate.babyNavigate}}
+     								{{each webnavigate.babyNavigate}}
+     								<li><a href="">{{$value.categoryname}}</a></li>
+     								{{/each}}
+     								{{else}}
+     									<h3>服务器错误</h3>
+     									{{/if}}
+     							</ul>
+     						</div>
+     					</div>
+     				</div>
+     			</div>
+     		</div>
+     	</li>
+     </ul>
+  </body>
+</html>
