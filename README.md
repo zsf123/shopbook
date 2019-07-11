@@ -8,5 +8,5 @@
 - ### 由于图片文件较大，将img文件夹（文件夹地址在百度云地址：https://pan.baidu.com/s/1KdAR4W9yUUBd6uGwm8PdKg  提取码：0p5r）下载下来后放入public目录下
 -  ### shopbook.sql文件是数据库文件，将该文件数据导入数据库中，更改/shopbook/database/database.js文件中的链接数据库的相关信息
 -  ### 浏览器输入地址：http://localhost:3000
--  ###  首先登陆，登录可以使用账号admin 密码admin，登陆过后可以查看购物车页面
+-  ###  首先登陆，登录可以使用账号admin 密码admin，（其他用户可自行查看数据库，也可自己注册），登陆过后可以查看购物车页面
 
